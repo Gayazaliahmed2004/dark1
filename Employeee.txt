@@ -1,0 +1,49 @@
+package StackOperations;
+
+import java.util.Scanner;
+
+public class Employee_Sal_Inc {
+    private int id;
+    private String name;
+    private double salary;
+
+    public Employee_Sal_Inc(int id, String name, double salary) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void raiseSalary(double percent) {
+        salary += salary * percent / 100;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{ " +
+                "id = " + id +
+                ", name=' " + name + '\'' +
+                ", salary=" + salary +
+                '}';
+    }
+
+    public static void main(String[] args) {
+        Employee_Sal_Inc employee = new Employee_Sal_Inc(1, "Ram", 20000);
+        System.out.println("Employee before Salary increase: " + employee);
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the percentage increment for the employee:");
+        employee.raiseSalary(sc.nextDouble());
+        System.out.println("Employee after salary increase: " + employee);
+    }
+}
