@@ -1,0 +1,328 @@
+Program:6
+Develop a JAVA program to create an abstract class Shape with abstract methods calculateArea() and 
+calculatePerimeter(). Create subclasses Circle and Triangle that extend the Shape class and implement the 
+respective methods to calculate the area and perimeter of each shape.
+Aim: Demonstrate constructor and method overloading in java programming.
+import java.util.Scanner;
+public abstract class Shape {
+private String name;
+ public Shape(String name) {
+ this.name = name;
+ }
+ public String getName() {
+ return name;
+ }
+ public abstract double calculateArea();
+ public abstract double calculatePerimeter();
+ public static void main(String[] args) {
+ double i, j, k, l;
+ System.out.println("Enter Radius of circle:");
+ Scanner sc = new Scanner(System.in);
+ i = sc.nextDouble();
+ Circles circle = new Circles("Circle", i);
+ System.out.println("Area of circle: " + circle.calculateArea());
+ System.out.println("Perimeter of circle: " + 
+circle.calculatePerimeter());
+ System.out.println("Enter sides of Triangle j, k, l:");
+ j = sc.nextDouble();
+ k = sc.nextDouble();
+ l = sc.nextDouble();
+ Shape triangle = new Triangle("Triangle", j, k, l);
+ System.out.println("Area of triangle: " + triangle.calculateArea());
+ System.out.println("Perimeter of Triangle: " + 
+triangle.calculatePerimeter());
+ }
+}
+class Circles extends Shape {
+ private double i; // radius is declared as variable i
+ public Circles(String name, double i) {
+ super(name);
+ this.i = i;
+ }
+ @Override
+ public double calculateArea() {
+ return Math.PI * i * i;
+ }
+ @Override
+ public double calculatePerimeter() {
+ return 2 * Math.PI * i;
+ }
+}
+class Triangle extends Shape {
+ private double sideA;
+ private double sideB;
+ private double sideC;
+ public Triangle(String name, double sideA, double sideB, double sideC) {
+ super(name);
+ this.sideA = sideA;
+ this.sideB = sideB;
+ this.sideC = sideC;
+ }
+ @Override
+ public double calculateArea() {
+ double semiperimeter = (sideA + sideB + sideC) / 2;
+ return Math.sqrt(semiperimeter * (semiperimeter - sideA) * (semiperimeter
+- sideB) * (semiperimeter - sideC));
+ }
+ @Override
+ public double calculatePerimeter() {
+ return sideA + sideB + sideC;
+ }
+}
+Output:
+Enter Radius of circle:
+5
+Area of circle: 78.53981633974483
+Perimeter of circle: 31.41592653589793
+Enter sides of Triangle j, k, l:
+3 4 5
+Area of triangle: 6.0
+Perimeter of Triangle: 12.0
+Program:7 
+Develop a JAVA program to create an interface Resizable with methods resizeWidth(int width) and 
+resizeHeight(int height) that allow an object to be resized. Create a class Rectangle that implements the Resizable 
+interface and implements the resize methods.
+Aim: Demonstrate the use of packages in java programming
+interface Resizable {
+ void resizeWidth(int width);
+ void resizeHeight(int height);
+}
+class Rectangle implements Resizable {
+ private int width;
+ private int height;
+ public Rectangle(int width, int height) {
+ this.width = width;
+ this.height = height;
+ }
+ @Override
+ public void resizeWidth(int width) {
+ this.width = width;
+ }
+ @Override
+ public void resizeHeight(int height) {
+ this.height = height;
+ }
+ public int getWidth() {
+ return width;
+ }
+ public int getHeight() {
+ return height;
+ }
+}
+class Resizable_main {
+ public static void main(String[] args) {
+ Rectangle rectangle = new Rectangle(10, 20);
+ System.out.println("Original width: " + rectangle.getWidth());
+ System.out.println("Original height: " + rectangle.getHeight());
+ rectangle.resizeWidth(30);
+ rectangle.resizeHeight(40);
+ System.out.println("New width: " + rectangle.getWidth());
+ System.out.println("New height: " + rectangle.getHeight());
+ }
+}
+Output: 
+Original width: 10
+Original height: 20
+New width: 30
+New height: 40
+
+
+
+
+
+
+
+
+
+next
+Program 4:
+A class called MyPoint, which models a 2D point with x and y coordinates, is designed as follows:
+
+ -arg") constructor that construct a point at the default location of (0,0).
+ overloaded constructor that constructs a point with the given x and y coordinates.
+
+ -element int array.
+ instance in the format "(x,y)".
+
+coordinates
+ iven MyPoint instance 
+(called another)
+
+code for the class MyPoint. Also develop a JAVA program (calledTestMyPoint) to test all the methods defined in the 
+class.
+Aim: Demonstrating creation of java classes, object, declaration and initializationof variables.
+public class MyPoint {
+private int x;
+ private int y;
+ // Default constructor
+ public MyPoint() {
+ this.x = 0;
+ this.y = 0;
+ }
+ // Overloaded constructor
+ public MyPoint(int x, int y) {
+ this.x = x;
+ this.y = y;
+ }
+ // Method to set both x and y
+ public void setXY(int x, int y) {
+ this.x = x;
+ this.y = y;
+ }
+ // Method to get x and y in a 2-element int array
+ public int[] getXY() {
+ int[] coordinates = {this.x,this.y};
+ return coordinates;
+ }
+ // toString method
+ @Override
+ public String toString() {
+ return "(" + this.x + "," +this.y + ")";
+ }
+ // Method to calculate distance to another point (x, y)
+ public double distance(int x, int y) {
+ int xDiff = this.x - x;
+ int yDiff = this.y - y;
+ return Math.sqrt(xDiff * xDiff + yDiff * yDiff);
+ }
+ // Overloaded method to calculate distance to another MyPoint
+ public double distance(MyPoint another) {
+ return distance(another.x, another.y);
+ }
+ // Overloaded method to calculate distance to the origin (0, 0)
+ public double distance() {
+ return distance(0, 0);
+ }
+}
+class TestMyPoint {
+ public static void main(String[] args) {
+ // Test default constructor
+ MyPoint point1 = new MyPoint();
+ System.out.println("Point 1: " + point1.toString());
+ // Test overloaded constructor
+ MyPoint point2 = new MyPoint(3, 4);
+ System.out.println("Point 2: " + point2.toString());
+ // Test setXY method
+ point1.setXY(1, 2);
+ System.out.println("Point 1 after setXY: " + point1.toString());
+ // Test getXY method
+ int[] coordinates = point2.getXY();
+ System.out.println("Point 2 coordinates: (" + coordinates[0] + "," + 
+coordinates[1] + ")");
+ // Test distance methods
+ System.out.println("Distance from point1 to (5, 6): " + point1.distance(5, 
+6));
+ System.out.println("Distance from point2 to point1: " + 
+point2.distance(point1));
+ System.out.println("Distance from point2 to origin: " + point2.distance());
+ }
+}
+Output:
+Point 1: (0,0)
+Point 2: (3,4)
+Point 1 after setXY: (1,2)
+Point 2 coordinates: (3,4)
+Distance from point1 to (5, 6): 5.656854249492381
+Distance from point2 to point1: 2.8284271247461903
+Distance from point2 to origin: 5.0
+Program:5.
+Develop a JAVA program to create a class named shape. Create three sub classes namely: circle,triangle and square, each 
+class has two member functions named draw () and erase ().
+Demonstrate polymorphism concepts by developing suitable methods, defining member data and main program.
+Aim: Demonstrate the core object-oriented concept of inheritance and polymorphism
+import java.util.Scanner;
+abstract class Shape {
+ protected String name;
+ public Shape(String name) {
+ this.name = name;
+ }
+ public abstract void draw();
+ public abstract void erase();
+}
+class Circle extends Shape {
+ private double radius;
+ public Circle(String name, double radius) {
+ super(name);
+ this.radius = radius;
+ }
+ @Override
+ public void draw() {
+ System.out.println("Drawing Circle with name: " + name + " and radius: " + 
+radius);
+ }
+ @Override
+ public void erase() {
+ System.out.println("Erasing Circle with name: " + name + " and radius: " + 
+radius);
+ }
+}
+class Triangle extends Shape {
+ private int base;
+ private int height;
+ public Triangle(String name, int base, int height) {
+ super(name);
+ this.base = base;
+ this.height = height;
+ }
+ @Override
+ public void draw() {
+ System.out.println("Drawing Triangle with name: " + name + ", base: " + base
++ " and height: " + height);
+ }
+ @Override
+ public void erase() {
+ System.out.println("Erasing Triangle with name: " + name + ", base: " + base
++ " and height: " + height);
+ }
+}
+class Square extends Shape {
+ private int side;
+ public Square(String name, int side) {
+ super(name);
+ this.side = side;
+ }
+ @Override
+ public void draw() {
+ System.out.println("Drawing Square with name: " + name + " and side: " + 
+side);
+ }
+ @Override
+ public void erase() {
+ System.out.println("Erasing Square with name: " + name + " and side: " + 
+side);
+ }
+ public static void main(String[] args) {
+ double radius;
+ int base, height, side;
+ System.out.println("Enter circle radius:");
+ Scanner sc = new Scanner(System.in);
+ radius = sc.nextDouble();
+ Shape c = new Circle("Circle", radius);
+ System.out.println("Enter triangle base and height:");
+ base = sc.nextInt();
+ height = sc.nextInt();
+ Shape t = new Triangle("Triangle", base, height);
+ System.out.println("Enter square side:");
+ side = sc.nextInt();
+ Shape s = new Square("Square", side);
+ c.draw();
+ c.erase();
+ t.draw();
+ t.erase();
+ s.draw();
+ s.erase();
+ }
+}
+Output:
+Enter circle radius:
+2
+Enter triangle base and height:
+2 4
+Enter square side:
+4
+Drawing Circle with name: Circle and radius: 2.0
+Erasing Circle with name: Circle and radius: 2.0
+Drawing Triangle with name: Triangle, base: 2 and height: 4
+Erasing Triangle with name: Triangle, base: 2 and height: 4
+Drawing Square with name: Square and side: 4
+Erasing Square with name: Square and side: 4
