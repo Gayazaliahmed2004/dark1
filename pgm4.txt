@@ -1,0 +1,67 @@
+                                                                                                        package point;
+
+public class Mypoint {
+	private int X ;
+	private int Y ;
+	
+	public Mypoint(){
+		this.X = 0;
+		this.Y= 0;
+	}
+	
+	public Mypoint (int X,int Y) {
+		this.X = X;
+		this.Y = Y;
+	}
+	
+	public void setXY (int X,int Y) {
+		this.X = X;
+		this.Y = Y;
+	}
+	
+	public int[] getXY(){
+		int[]coordinates = {this.X ,this.Y};
+		return coordinates;
+	}
+	
+	public String toString(){
+		return "(" + this.X +"," + this.Y + ")";
+ 	}
+	
+	public double distance (int X,int Y) {
+		int XDiff = this.X - X;
+		int YDiff = this.Y - Y;
+		return Math.sqrt (XDiff * XDiff + YDiff * YDiff);
+	}
+	
+	public double distance (Mypoint another) {
+		return distance (another.X , another.Y);
+	}
+	
+	public double distance() {
+		return distance (0,0);
+	}
+	
+class TestMypoint{
+	public static void main(String[] args) {
+		Mypoint point1 = new Mypoint();
+		System.out.println("point1:"+ point1.toString());
+			
+			Mypoint point2 = new Mypoint (3,4);
+			System.out.println("point2:"+ point2.toString());
+			
+			point1.setXY(1,2);
+			System.out.println("point1 after setXY:" + point1.toString());
+			
+			int[] coordinates = point2.getXY();
+			System.out.println("point2 coordinates :("+ coordinates[0]+","+coordinates[1]+")");
+			System.out.println("Distance from point1 to (5,6):"+ point1.distance (5,6));
+			System.out.println("Distance from point2 to point1:"+point2.distance(point1));
+			System.out.println("Distance from point2 to origin:"+point2.distance());
+			
+		}
+		
+
+	}
+
+}
